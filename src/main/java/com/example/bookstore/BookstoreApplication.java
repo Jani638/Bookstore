@@ -22,6 +22,7 @@ public class BookstoreApplication {
 	@Bean
 	public CommandLineRunner demo(BookRepository repository) {
 	return (args) -> {
+		log.info("save books");
 	   	repository.save(new Book("Spring Boot Basics", "John Doe", 2020, "758-2394-24", 29.90));
         repository.save(new Book("Java Programming", "Jane Smith", 2013, "4738-759", 39.90));
         repository.save(new Book("Clean Code", "Robert C. Martin", 2008, "192-3876-749", 42.50));
