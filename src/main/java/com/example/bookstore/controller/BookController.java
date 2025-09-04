@@ -2,7 +2,7 @@ package com.example.bookstore.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import com.example.bookstore.model.BookRepository;
 
 
@@ -16,7 +16,7 @@ public class BookController {
         this.repository = repository;
     }
 	
-    @RequestMapping(value= {"/index"})
+    @GetMapping(value= {"/booklist"})
     public String bookList(Model model) {	
         model.addAttribute("books", repository.findAll());
         return "booklist";
