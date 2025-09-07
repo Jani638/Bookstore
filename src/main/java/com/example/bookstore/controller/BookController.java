@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.bookstore.model.Book;
 import com.example.bookstore.model.BookRepository;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class BookController {
@@ -38,7 +40,14 @@ public class BookController {
     public String deleteBook(@PathVariable("id") Long bookId) {
     repository.deleteById(bookId);
     return "redirect:/booklist";
-}
+    }
+    @GetMapping("/edit/{id}")
+    public String editBook(@PathVariable("id") Long bookId, Model model) {
+        Book book = repository.findById(bookId).orElse(null);
+        model.addAttribute("book", book);
+        return "editbook";
+    }
+    
     
     
 
