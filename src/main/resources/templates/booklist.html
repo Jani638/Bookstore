@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>BOOKS</title>
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+
 </head>
 <body>
     <h1>BOOKS</h1>
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Author</th>
@@ -21,11 +23,13 @@
                 <td th:text="${book.title}">Title</td>
                 <td th:text="${book.isbn}">ISBN</td>
                 <td th:text="${book.publicationYear}">Year</td>
-                <td><a th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>
-                <td><a th:href="@{/edit/{id}(id=${book.id})}">Edit</a></td>
+                <td><a class="btn btn-danger" th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>
+                <td><a class="btn btn-primary" th:href="@{/edit/{id}(id=${book.id})}">Edit</a></td>
             </tr>
             <tr>
-                <td><a href="/addbook">Add book</a></td>
+                <td style="background-color:white; border:none;">
+                    <a class="btn btn-success" href="/addbook">Add book</a>
+                </td>
             </tr>
         </tbody>
     </table>
