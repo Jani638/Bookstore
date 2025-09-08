@@ -26,15 +26,18 @@
         <label class="form-label">Price</label>
         <input type="number" step="0.01" th:field="*{price}" class="form-control" /><br/>
 
-        <input type="submit" value="Save" class="btn btn-success" />
-
-    <select name="category" class="form-control">
+        <label class="form-label">Category</label>
+        <select name="category" class="form-control">
         <option th:each="category : ${categories}" 
                 th:value="${category.id}" 
                 th:text="${category.name}"
                 th:selected="${book.category != null} ? ${category.id} == ${book.category.id} : false">
         </option>
-    </select>
+    </select><br/>
+
+        <input type="submit" value="Save" class="btn btn-success" />
+
+    
     </form>
 </div>
 </body>
