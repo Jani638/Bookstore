@@ -1,5 +1,7 @@
 package com.example.bookstore.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -70,6 +72,8 @@ public class Book {
                 + ", price=" + price + "]";
     }
 
+
+    @JsonIgnoreProperties ("books")
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
@@ -81,6 +85,5 @@ public class Book {
     public void setCategory(Category category) {
         this.category = category;
     }
-
-
+    
 }
