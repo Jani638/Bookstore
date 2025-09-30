@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.example.bookstore.model.AppUser;
+import com.example.bookstore.model.AppUserRepository;
 import com.example.bookstore.model.Book;
 import com.example.bookstore.model.BookRepository;
 import com.example.bookstore.model.Category;
@@ -22,7 +24,7 @@ public class BookstoreApplication {
 		SpringApplication.run(BookstoreApplication.class, args);
 	}
 	@Bean
-	public CommandLineRunner demo(BookRepository repository, CategoryRepository categoryRepository) {
+	public CommandLineRunner demo(BookRepository repository, CategoryRepository categoryRepository, AppUserRepository urepository) {
 	return (args) -> {
 		log.info("save categories");
         Category programming = categoryRepository.save(new Category("Programming"));
@@ -33,6 +35,11 @@ public class BookstoreApplication {
 	   	repository.save(new Book("Spring Boot Basics", "John Doe", 2020, "758-2394-24", 29.90, programming));
         repository.save(new Book("Java Programming", "Jane Smith", 2013, "4738-759", 39.90, java));
         repository.save(new Book("Clean Code", "Robert C. Martin", 2008, "192-3876-749", 42.50, software));
+
+		AppUser user1 = new AppUser("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "user@email.com", "USER");
+		AppUser user2 = new AppUser("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "admin@email.com", "ADMIN");
+		urepository.save(user1);
+		urepository.save(user2);
 
 		log.info("fetch all books");
 			for (Book book : repository.findAll()) {
