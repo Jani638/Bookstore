@@ -31,7 +31,7 @@ public class WebSecurityConfig {
 public SecurityFilterChain configure(HttpSecurity http) throws Exception {
     http.authorizeHttpRequests(authorize -> authorize
         .requestMatchers("/css/**").permitAll()
-        .requestMatchers("/", "/home").permitAll()
+        .requestMatchers("/", "/home", "/addbook", "/booklist").permitAll()
         .requestMatchers("/h2-console/**").permitAll()
         .anyRequest().authenticated())
             .headers(headers -> 
