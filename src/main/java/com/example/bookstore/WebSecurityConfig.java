@@ -31,9 +31,10 @@ public class WebSecurityConfig {
 public SecurityFilterChain configure(HttpSecurity http) throws Exception {
     http.authorizeHttpRequests(authorize -> authorize
         .requestMatchers("/css/**").permitAll()
-        .requestMatchers("/", "/home", "/addbook", "/booklist").permitAll()
+        .requestMatchers("/", "/home", "/login").permitAll()
         .requestMatchers("/h2-console/**").permitAll()
-        .anyRequest().authenticated())
+        .anyRequest().authenticated()
+        )
             .headers(headers -> 
                 headers.frameOptions().disable())
         .formLogin(formlogin -> formlogin
@@ -42,6 +43,11 @@ public SecurityFilterChain configure(HttpSecurity http) throws Exception {
             .permitAll())
         .logout(logout -> logout.permitAll())
         .csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**"));
+
+        String env = System.getenv("ENVIRONMENT");
+    if ("HEROKU".equals(env)) {
+        http.requiresChannel(channel -> channel.anyRequest().requiresSecure());
+    }
     return http.build();
 }
 

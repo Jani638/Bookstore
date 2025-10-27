@@ -23,23 +23,26 @@ public class BookstoreApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BookstoreApplication.class, args);
 	}
-	@Bean
+
+	@Bean 
 	public CommandLineRunner demo(BookRepository repository, CategoryRepository categoryRepository, AppUserRepository urepository) {
 	return (args) -> {
-		log.info("save categories");
-        Category programming = categoryRepository.save(new Category("Programming"));
-        Category java = categoryRepository.save(new Category("Java"));
-        Category software = categoryRepository.save(new Category("Software Engineering"));
+		//log.info("save categories");
+        //Category programming = categoryRepository.save(new Category("Programming"));
+        //Category java = categoryRepository.save(new Category("Java"));
+        //Category software = categoryRepository.save(new Category("Software Engineering"));
 
-		log.info("save books");
-	   	repository.save(new Book("Spring Boot Basics", "John Doe", 2020, "758-2394-24", 29.90, programming));
-        repository.save(new Book("Java Programming", "Jane Smith", 2013, "4738-759", 39.90, java));
-        repository.save(new Book("Clean Code", "Robert C. Martin", 2008, "192-3876-749", 42.50, software));
+		//log.info("save books");
+	   	//if (repository.count() == 0) {
+          //  repository.save(new Book("Spring Boot Basics", "John Doe", 2020, "758-2394-24", 29.90, programming));
+            //repository.save(new Book("Java Programming", "Jane Smith", 2013, "4738-759", 39.90, java));
+            //repository.save(new Book("Clean Code", "Robert C. Martin", 2008, "192-3876-749", 42.50, software));
+        //}
 
-		AppUser user1 = new AppUser("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "user@email.com", "USER");
-		AppUser user2 = new AppUser("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "admin@email.com", "ADMIN");
-		urepository.save(user1);
-		urepository.save(user2);
+		//AppUser user1 = new AppUser("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "user@email.com", "USER");
+		//AppUser user2 = new AppUser("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "admin@email.com", "ADMIN");
+		//urepository.save(user1);
+		//urepository.save(user2);
 
 		log.info("fetch all books");
 			for (Book book : repository.findAll()) {
