@@ -29,7 +29,7 @@ public class BookController {
 
      @GetMapping("/")
     public String redirectToBooklist() {
-        return "redirect:/booklist";
+        return "redirect:/login";
     }
 
     @GetMapping("/login")
