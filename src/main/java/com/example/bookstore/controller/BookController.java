@@ -27,6 +27,11 @@ public class BookController {
         this.categoryRepository = categoryRepository;
     }
 
+     @GetMapping("/")
+    public String redirectToBooklist() {
+        return "redirect:/booklist";
+    }
+
     @GetMapping("/login")
     public String login() {
         return "login";
